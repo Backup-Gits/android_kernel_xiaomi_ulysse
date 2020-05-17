@@ -15,6 +15,7 @@
 #include "common-disable.dtsi"
 
 #include "common-audio.dtsi"
+#include "common-cpu.dtsi"
 #include "common-battery.dtsi"
 #include "common-mdss.dtsi"
 #include "common-misc.dtsi"
