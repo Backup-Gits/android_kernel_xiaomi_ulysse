@@ -95,6 +95,11 @@ else
 VDSO_CFLAGS += -marm
 endif
 
+ifeq ($(CONFIG_ARCH_MSM8917), y)
+KBUILD_CFLAGS += -march=armv8-a+crypto+crc -mtune=cortex-a53 -mcpu=cortex-a53+crypto+crc
+KBUILD_AFLAGS += -march=armv8-a+crypto+crc -mtune=cortex-a53 -mcpu=cortex-a53+crypto+crc
+endif
+
 VDSO_AFLAGS := $(VDSO_CAFLAGS)
 VDSO_AFLAGS += -D__ASSEMBLY__
 
