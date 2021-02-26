@@ -738,6 +738,7 @@ static void a3xx_init(struct adreno_device *adreno_dev)
 
 	_a3xx_pwron_fixup(adreno_dev);
 
+#if 0
 	/* Adjust snapshot section sizes according to core */
 	if ((adreno_is_a330(adreno_dev) || adreno_is_a305b(adreno_dev))) {
 		gpudev->snapshot_data->sect_sizes->cp_pfp =
@@ -747,6 +748,7 @@ static void a3xx_init(struct adreno_device *adreno_dev)
 		gpudev->snapshot_data->sect_sizes->cp_merciu =
 					A320_SNAPSHOT_CP_MERCIU_SECTION_SIZE;
 	}
+#endif
 }
 
 /*
@@ -1562,6 +1564,7 @@ static const struct adreno_reg_offsets a3xx_reg_offsets = {
  * Defined the size of sections dumped in snapshot, these values
  * may change after initialization based on the specific core
  */
+#if 0
 static struct adreno_snapshot_sizes a3xx_snap_sizes = {
 	.cp_pfp = 0x14,
 	.vpc_mem = 512,
@@ -1574,6 +1577,7 @@ static struct adreno_snapshot_sizes a3xx_snap_sizes = {
 static struct adreno_snapshot_data a3xx_snapshot_data = {
 	.sect_sizes = &a3xx_snap_sizes,
 };
+#endif
 
 static int _load_firmware(struct kgsl_device *device, const char *fwfile,
 			  void **buf, int *len)
@@ -1917,8 +1921,6 @@ struct adreno_gpudev adreno_a3xx_gpudev = {
 	.ft_perf_counters_count = ARRAY_SIZE(a3xx_ft_perf_counters),
 	.perfcounters = &a3xx_perfcounters,
 	.irq = &a3xx_irq,
-	.irq_trace = trace_kgsl_a3xx_irq_status,
-	.snapshot_data = &a3xx_snapshot_data,
 	.num_prio_levels = 1,
 	.vbif_xin_halt_ctrl0_mask = A3XX_VBIF_XIN_HALT_CTRL0_MASK,
 	.platform_setup = a3xx_platform_setup,
@@ -1928,6 +1930,4 @@ struct adreno_gpudev adreno_a3xx_gpudev = {
 	.perfcounter_init = a3xx_perfcounter_init,
 	.perfcounter_close = a3xx_perfcounter_close,
 	.start = a3xx_start,
-	.snapshot = a3xx_snapshot,
-	.coresight = {&a3xx_coresight},
 };
