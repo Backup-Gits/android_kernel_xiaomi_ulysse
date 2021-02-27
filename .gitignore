@@ -123,6 +123,9 @@ kernel/configs/android-*.cfg
 #
 Android.bp
 
-# Ignore Out directory and build log
+# Ignore Out, gcc, and anykernel directory and build log
+gcc
+gcc32
+anykernel-3
 out
 buildlog.txt
